@@ -1,0 +1,9 @@
+﻿services:
+  materialclassificationapp:
+    image: materialclassificationapp
+    build:
+      context: .
+      dockerfile: MaterialClassificationApp/Dockerfile
+    volumes:
+      - ./MaterialClassification/bin/Debug/net9.0/model_10_90_11.zip:/data/inception5h/model_10_90_11.zip
+      - C:/Users/lavsh/Downloads/granite.jpg:/data/granite.jpg

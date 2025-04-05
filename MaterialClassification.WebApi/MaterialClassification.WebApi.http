@@ -1,0 +1,6 @@
+@MaterialClassification.WebApi_HostAddress = http://localhost:5139
+
+GET {{MaterialClassification.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

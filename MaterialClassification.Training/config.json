@@ -1,0 +1,11 @@
+{
+  "ImageHeight": 220,
+  "ImageWidth": 220,
+  "OffsetColor": 117,
+  "ChannelsLast": true,
+  "InceptionTensorFlowModelFilePath": "C:\\CodeProjects\\NET\\MaterialClassification\\MaterialClassification.Training\\data\\inception5h\\tensorflow_inception_graph.pb",
+  "ImagesRootPath": "C:\\CodeProjects\\NET\\MaterialClassification\\MaterialClassification.Training\\data\\materials_under_microscope",
+  "ImagesForTestPerClass": 10,
+  "ImagesForTrainPerClass": 90,
+  "RandomSeed": 11
+}
