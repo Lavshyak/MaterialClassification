@@ -1,6 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialClassification", "MaterialClassification\MaterialClassification.csproj", "{E004F3BF-E5F8-4E38-83AF-A9D4928A0BD3}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{009C2901-D0A3-40C6-B04C-D7FDF0CDF841}"
+	ProjectSection(SolutionItems) = preProject
+		compose.yaml = compose.yaml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialClassification.WebApi", "MaterialClassification.WebApi\MaterialClassification.WebApi.csproj", "{80C43562-A34D-4EFB-893C-9862ED967A26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialClassification.ConsoleClient", "MaterialClassification.ConsoleClient\MaterialClassification.ConsoleClient.csproj", "{BE7BF63B-B8EA-4A47-895A-2527BB45BDC1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialClassification.DataModels", "MaterialClassification.DataModels\MaterialClassification.DataModels.csproj", "{DD954420-41A8-4EDE-A534-48B2A66CC8D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialClassification.Training", "MaterialClassification.Training\MaterialClassification.Training.csproj", "{1ADADC23-96AC-472E-AB66-8A269070E06E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -8,9 +19,21 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E004F3BF-E5F8-4E38-83AF-A9D4928A0BD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E004F3BF-E5F8-4E38-83AF-A9D4928A0BD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E004F3BF-E5F8-4E38-83AF-A9D4928A0BD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E004F3BF-E5F8-4E38-83AF-A9D4928A0BD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80C43562-A34D-4EFB-893C-9862ED967A26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80C43562-A34D-4EFB-893C-9862ED967A26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80C43562-A34D-4EFB-893C-9862ED967A26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80C43562-A34D-4EFB-893C-9862ED967A26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE7BF63B-B8EA-4A47-895A-2527BB45BDC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE7BF63B-B8EA-4A47-895A-2527BB45BDC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE7BF63B-B8EA-4A47-895A-2527BB45BDC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE7BF63B-B8EA-4A47-895A-2527BB45BDC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD954420-41A8-4EDE-A534-48B2A66CC8D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD954420-41A8-4EDE-A534-48B2A66CC8D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD954420-41A8-4EDE-A534-48B2A66CC8D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD954420-41A8-4EDE-A534-48B2A66CC8D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1ADADC23-96AC-472E-AB66-8A269070E06E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ADADC23-96AC-472E-AB66-8A269070E06E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ADADC23-96AC-472E-AB66-8A269070E06E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1ADADC23-96AC-472E-AB66-8A269070E06E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

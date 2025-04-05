@@ -1,4 +1,4 @@
-﻿namespace MaterialClassification;
+﻿namespace MaterialClassification.DataModels;
 
 public class ImageData
 {

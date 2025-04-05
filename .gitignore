@@ -3,3 +3,6 @@ obj/
 /packages/
 riderModule.iml
 /_ReSharper.Caches/
+/MaterialClassification.Training/data/
+.idea/
+.git/
