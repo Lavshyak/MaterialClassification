@@ -46,6 +46,7 @@ public class Program
 
         var saveFilePath =
             Path.Combine(Directory.GetCurrentDirectory(), $"model_{config.ImagesForTestPerClass}_{config.ImagesForTrainPerClass}_{config.RandomSeed}.zip");
+        File.Delete(saveFilePath);
         mlContext.Model.Save(model, trainPartDataView.Schema,
             saveFilePath);
         Console.WriteLine($"Model saved to {saveFilePath}");
@@ -167,8 +168,8 @@ public class Program
         IDataView predictions = model.Transform(testData);
 
         // Create an IEnumerable for the predictions for displaying results
-        IEnumerable<TrainingImagePrediction> imagePredictionData =
-            mlContext.Data.CreateEnumerable<TrainingImagePrediction>(predictions, true);
+        IEnumerable<ImagePrediction> imagePredictionData =
+            mlContext.Data.CreateEnumerable<ImagePrediction>(predictions, true);
         DisplayResults(imagePredictionData.Where(ipd => ipd.PredictedLabelValue != ipd.Label));
 
         // Get performance metrics on the model using training data
@@ -201,10 +202,10 @@ public class Program
         Console.WriteLine("=============== End of Test ===============");
     }
 
-    private static void DisplayResults(IEnumerable<TrainingImagePrediction> imagePredictionData)
+    private static void DisplayResults(IEnumerable<ImagePrediction> imagePredictionData)
     {
         int i = 0;
-        foreach (TrainingImagePrediction prediction in imagePredictionData)
+        foreach (ImagePrediction prediction in imagePredictionData)
         {
             Console.WriteLine(
                 $"{i++}) Image: {Path.GetFileName(prediction.ImagePath)} predicted as: {prediction.PredictedLabelValue} with score: {prediction.Score.Max()} right: {(prediction.Label == prediction.PredictedLabelValue ? "True" : "False")}");

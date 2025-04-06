@@ -13,15 +13,7 @@ public class ImageData
     public MLImage ResizedImage { get; set; } = null!;
 }
 
-public class ImagePrediction
-{
-    // Вероятности принадлежности к классам
-    public float[] Score { get; set; } = null!;
-    // Результат предсказания
-    public string PredictedLabelValue { get; set; } = null!;
-}
-
-public class TrainingImagePrediction : ImageData
+public class ImagePrediction : ImageData
 {
     // Вероятности принадлежности к классам
     public float[] Score { get; set; } = null!;
