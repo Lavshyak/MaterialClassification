@@ -6,6 +6,6 @@
   "InceptionTensorFlowModelFilePath": "C:\\CodeProjects\\NET\\MaterialClassification\\MaterialClassification.Training\\data\\inception5h\\tensorflow_inception_graph.pb",
   "ImagesRootPath": "C:\\CodeProjects\\NET\\MaterialClassification\\MaterialClassification.Training\\data\\materials_under_microscope",
   "ImagesForTestPerClass": 10,
-  "ImagesForTrainPerClass": 90,
+  "ImagesForTrainPerClass": 16,
   "RandomSeed": 11
 }

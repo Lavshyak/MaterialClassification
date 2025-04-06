@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialClassification.Data
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialClassification.Training", "MaterialClassification.Training\MaterialClassification.Training.csproj", "{1ADADC23-96AC-472E-AB66-8A269070E06E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialClassification.SingleImageTest", "MaterialClassification.SingleImageTest\MaterialClassification.SingleImageTest.csproj", "{6E51EFA3-FF86-4AD4-8236-04A1B352D42B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,5 +37,9 @@ Global
 		{1ADADC23-96AC-472E-AB66-8A269070E06E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1ADADC23-96AC-472E-AB66-8A269070E06E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1ADADC23-96AC-472E-AB66-8A269070E06E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E51EFA3-FF86-4AD4-8236-04A1B352D42B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E51EFA3-FF86-4AD4-8236-04A1B352D42B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E51EFA3-FF86-4AD4-8236-04A1B352D42B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E51EFA3-FF86-4AD4-8236-04A1B352D42B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
