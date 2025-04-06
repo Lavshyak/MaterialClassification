@@ -3,6 +3,7 @@ using System.Text;
 using MaterialClassification.DataModels;
 using Microsoft.ML;
 using Microsoft.ML.Data;
+using Microsoft.ML.Transforms.Image;
 using SkiaSharp;
 
 var modelPath =
@@ -14,7 +15,12 @@ var predictionEngine = mlContext.Model.CreatePredictionEngine
     <ImageData, ImagePrediction>
     (trainedModel);
 Console.WriteLine("PredictionEngine создан.");
-var outputSchema = trainedModel.GetOutputSchema(inputSchema) ?? throw new InvalidOperationException();
+
+var b = new DataViewSchema.Builder();
+b.AddColumns(inputSchema);
+b.AddColumn("ResizedImage", new ImageDataViewType(220,220));
+var schema = b.ToSchema();
+var outputSchema = trainedModel.GetOutputSchema(schema) ?? throw new InvalidOperationException();
 
 var imagePath =
     "C:\\CodeProjects\\NET\\MaterialClassification\\MaterialClassification.Training\\data\\materials_under_microscope\\Copper-1B\\Copper-1B_6.jpg";

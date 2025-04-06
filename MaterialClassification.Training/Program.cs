@@ -2,6 +2,7 @@
 using MaterialClassification.DataModels;
 using Microsoft.ML;
 using Microsoft.ML.Data;
+using Microsoft.ML.Transforms.Image;
 
 namespace MaterialClassification.Training;
 
@@ -39,20 +40,23 @@ public class Program
         var preparationTransformer = preparationEstimator.Fit(trainPartDataView);
         var preparedTrainPartDataView = preparationTransformer.Transform(trainPartDataView);
         var preparedTestPartDataView = preparationTransformer.Transform(testPartDataView);
+
+        var preparedTrainPart = mlContext.Data.CreateEnumerable<ImageData>(preparedTrainPartDataView, false);
+        var preparedTrainPartDataView1 = mlContext.Data.LoadFromEnumerable(preparedTrainPart);
         
         var estimator = GenerateClassificationEstimator(mlContext, config);
-        var model = TrainModel(estimator, preparedTrainPartDataView);
-        Test(mlContext, model, preparedTestPartDataView);
+        var model = TrainModel(estimator, preparedTrainPartDataView1);
+        var predictionsDataView = Test(mlContext, model, preparedTestPartDataView);
 
         var saveFilePath =
             Path.Combine(Directory.GetCurrentDirectory(), $"model_{config.ImagesForTestPerClass}_{config.ImagesForTrainPerClass}_{config.RandomSeed}.zip");
         File.Delete(saveFilePath);
-        mlContext.Model.Save(model, trainPartDataView.Schema,
-            saveFilePath);
+        
+        mlContext.Model.Save(model, predictionsDataView.Schema, saveFilePath);
         Console.WriteLine($"Model saved to {saveFilePath}");
     }
 
-    public record ImagesDataGroup(string ClassLabel, ImageData[] ImagesData);
+    public record ImagesDataGroup(string ClassLabel, PreparationImageData[] ImagesData);
 
     public static ImagesDataGroup[] CollectImagesDataFromDirectory(string directoryPath,
         int takeImagesPerClass = int.MaxValue)
@@ -66,7 +70,7 @@ public class Program
                     var classLabel = Path.GetFileName(classDirPath) ?? throw new InvalidOperationException();
 
                     return new ImagesDataGroup(classLabel, filePaths.Take(takeImagesPerClass).Select(filePath =>
-                            new ImageData
+                            new PreparationImageData
                             {
                                 ImagePath = filePath, Label = classLabel
                             })
@@ -77,7 +81,7 @@ public class Program
         return imagesDataGroups;
     }
 
-    public record TrainTestParts(ImageData[] TrainPart, ImageData[] TestPart);
+    public record TrainTestParts(PreparationImageData[] TrainPart, PreparationImageData[] TestPart);
 
     public static TrainTestParts TrainTestSplit(ImagesDataGroup[] imagesDataGroups, float testFraction,
         int randomSeed)
@@ -110,9 +114,10 @@ public class Program
     {
         IEstimator<ITransformer> pipeline =
             // 1
-            mlContext.Transforms.LoadImages(inputColumnName: nameof(ImageData.ImagePath),
+            mlContext.Transforms.LoadImages(inputColumnName: nameof(PreparationImageData.ImagePath),
                     outputColumnName: "SourceImage",
                     imageFolder: "")
+                //.Append(mlContext.Transforms.DropColumns("ResizedImage"))
                 // 2
                 .Append(mlContext.Transforms.ResizeImages(
                     inputColumnName: "SourceImage", outputColumnName: "ResizedImage",
@@ -161,15 +166,15 @@ public class Program
         return model;
     }
 
-    public static void Test(MLContext mlContext, ITransformer model, IDataView testData)
+    public static IDataView Test(MLContext mlContext, ITransformer model, IDataView testData)
     {
         Console.WriteLine("=============== Test ===============");
         // Generate predictions from the test data, to be evaluated
         IDataView predictions = model.Transform(testData);
 
         // Create an IEnumerable for the predictions for displaying results
-        IEnumerable<ImagePrediction> imagePredictionData =
-            mlContext.Data.CreateEnumerable<ImagePrediction>(predictions, true);
+        IEnumerable<TrainingImagePrediction> imagePredictionData =
+            mlContext.Data.CreateEnumerable<TrainingImagePrediction>(predictions, true);
         DisplayResults(imagePredictionData.Where(ipd => ipd.PredictedLabelValue != ipd.Label));
 
         // Get performance metrics on the model using training data
@@ -200,12 +205,14 @@ public class Program
         Console.WriteLine($"MacroAccuracy is: {metrics.MacroAccuracy:F6}");
 
         Console.WriteLine("=============== End of Test ===============");
+
+        return predictions;
     }
 
-    private static void DisplayResults(IEnumerable<ImagePrediction> imagePredictionData)
+    private static void DisplayResults(IEnumerable<TrainingImagePrediction> imagePredictionData)
     {
         int i = 0;
-        foreach (ImagePrediction prediction in imagePredictionData)
+        foreach (TrainingImagePrediction prediction in imagePredictionData)
         {
             Console.WriteLine(
                 $"{i++}) Image: {Path.GetFileName(prediction.ImagePath)} predicted as: {prediction.PredictedLabelValue} with score: {prediction.Score.Max()} right: {(prediction.Label == prediction.PredictedLabelValue ? "True" : "False")}");
