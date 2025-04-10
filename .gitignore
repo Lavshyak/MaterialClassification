@@ -6,3 +6,4 @@ riderModule.iml
 /MaterialClassification.Training/data/
 .idea/
 .git/
+*.sln.DotSettings.user
