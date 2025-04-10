@@ -5,7 +5,7 @@
   "ChannelsLast": true,
   "InceptionTensorFlowModelFilePath": "C:\\CodeProjects\\NET\\MaterialClassification\\MaterialClassification.Training\\data\\inception5h\\tensorflow_inception_graph.pb",
   "ImagesRootPath": "C:\\CodeProjects\\NET\\MaterialClassification\\MaterialClassification.Training\\data\\materials_under_microscope",
-  "ImagesForTestPerClass": 1,
-  "ImagesForTrainPerClass": 1,
+  "ImagesForTestPerClass": 10,
+  "ImagesForTrainPerClass": 90,
   "RandomSeed": 11
 }

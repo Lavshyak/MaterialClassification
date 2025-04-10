@@ -2,12 +2,13 @@
 using MaterialClassification.DataModels;
 using Microsoft.ML;
 using Microsoft.ML.Data;
+using Microsoft.ML.Transforms.Image;
 
 namespace MaterialClassification.WebApi;
 
 public class MaterialClassificationService : IDisposable
 {
-    private readonly PredictionEngine<ImageData, ImagePrediction> _predictionEngine;
+    private readonly PredictionEngine<ProductionImageDataInput, ProductionImageDataOutput> _predictionEngine;
     private readonly DataViewSchema _outputSchema;
     
     public MaterialClassificationService(IConfiguration configuration)
@@ -17,15 +18,20 @@ public class MaterialClassificationService : IDisposable
         ITransformer trainedModel = mlContext.Model.Load(modelPath, out var inputSchema);
         Console.WriteLine("Модель загружена.");
         _predictionEngine = mlContext.Model.CreatePredictionEngine
-            <ImageData, ImagePrediction>
+            <ProductionImageDataInput, ProductionImageDataOutput>
             (trainedModel);
         Console.WriteLine("PredictionEngine создан.");
-        _outputSchema = trainedModel.GetOutputSchema(inputSchema) ?? throw new InvalidOperationException();
+        
+        var b = new DataViewSchema.Builder();
+        b.AddColumns(inputSchema);
+        b.AddColumn(nameof(ProductionImageDataInput.SourceImage), new ImageDataViewType(1,1));
+        var schema = b.ToSchema();
+        _outputSchema = trainedModel.GetOutputSchema(schema) ?? throw new InvalidOperationException();
     }
 
-    public string Predict(string imagePath)
+    public string Predict(Stream imageStream)
     {
-        var imageData = new ImageData { ImagePath = imagePath, };
+        var imageData = new ProductionImageDataInput { SourceImage = MLImage.CreateFromStream(imageStream) };
         var sb = new StringBuilder();
         var prediction = _predictionEngine.Predict(imageData);
         sb.AppendLine(prediction.PredictedLabelValue);

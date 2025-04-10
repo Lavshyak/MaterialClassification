@@ -7,17 +7,12 @@ namespace MaterialClassification.WebApi.Controllers;
 public class MaterialClassificationController : ControllerBase
 {
     [HttpPost]
-    public string Classify([FromBody] string fileContentBase64,
+    public string Classify(IFormFile formFile,
         [FromServices] MaterialClassificationService materialClassificationService,
         [FromServices] IConfiguration configuration)
     {
-        var filesDirectoryPath = configuration["ImageFilesDirectoryPath"]
-                                 ?? throw new InvalidOperationException();
-        var fileContent = Convert.FromBase64String(fileContentBase64);
-        var filePath = Path.Combine(filesDirectoryPath, Guid.NewGuid().ToString());
-        Directory.CreateDirectory(filesDirectoryPath);
-        System.IO.File.WriteAllBytes(filePath, fileContent);
-        var predictionResult = materialClassificationService.Predict(filePath);
+        using var stream = formFile.OpenReadStream();
+        var predictionResult = materialClassificationService.Predict(stream);
         return predictionResult;
     }
 }

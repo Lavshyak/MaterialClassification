@@ -3,14 +3,14 @@ using Microsoft.ML.Transforms.Image;
 
 namespace MaterialClassification.DataModels;
 
-public class PreparationImageData
+public class PreparationImageDataInput
 {
     public string ImagePath { get; set; } = null!;
     // Правильный класс (для обучения)
-    public string Label { get; set; } = null!;
+    public string LabelValue { get; set; } = null!;
 }
 
-public class TrainingImagePrediction : PreparationImageData
+public class TrainingImageDataOutput : PreparationImageDataInput
 {
     // Вероятности принадлежности к классам
     public float[] Score { get; set; } = null!;
@@ -18,13 +18,13 @@ public class TrainingImagePrediction : PreparationImageData
     public string PredictedLabelValue { get; set; } = null!;
 }
 
-public class ImageData : PreparationImageData
+public class ProductionImageDataInput : PreparationImageDataInput
 {
-    [ImageType(220,220)]
-    public MLImage ResizedImage { get; set; } = null!;
+    [ImageType(1,1)]
+    public MLImage SourceImage { get; set; } = null!;
 }
 
-public class ImagePrediction : ImageData
+public class ProductionImageDataOutput : ProductionImageDataInput
 {
     // Вероятности принадлежности к классам
     public float[] Score { get; set; } = null!;

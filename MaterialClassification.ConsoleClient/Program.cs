@@ -1,6 +1,5 @@
-﻿using System.Net.Http.Json;
-Console.WriteLine("Введите путь к файлу с микрофотографией материала:");
-var path = Console.ReadLine();
+﻿Console.WriteLine("Введите путь к файлу с микрофотографией материала:");
+var path = "C:\\CodeProjects\\NET\\MaterialClassification\\MaterialClassification.Training\\data\\materials_under_microscope\\Copper-1B\\Copper-1B_6.jpg";//Console.ReadLine();
 if (!File.Exists(path))
 {
     Console.WriteLine("Путь неверный");
@@ -8,11 +7,13 @@ if (!File.Exists(path))
     return;
 }
 var fileContent = File.ReadAllBytes(path);
-var fileContentBase64 = Convert.ToBase64String(fileContent);
+using var fileStream = File.OpenRead(path);
 using var httpClient = new HttpClient();
-using var response = await httpClient.PostAsJsonAsync(
+using var content = new MultipartFormDataContent();
+content.Add(new StreamContent(fileStream), "formFile", fileStream.Name);
+using var response = await httpClient.PostAsync(
     "http://localhost:5139/MaterialClassification/Classify",
-    fileContentBase64);
+    content);
 var predictionResult = await response.Content.ReadAsStringAsync();
 Console.WriteLine(predictionResult);
 Console.ReadLine();
