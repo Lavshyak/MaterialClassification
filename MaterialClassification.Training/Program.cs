@@ -68,8 +68,14 @@ public class Program
 
             var estimator = Class1.GenerateClassificationEstimator(mlContext, config.ImageHeight, config.ImageWidth, config.OffsetColor, config.InceptionTensorFlowModelFilePath);
             var model = Class1.TrainModel(estimator, trainPartDataView);
+            
             var predictionsDataView = Class1.Test(mlContext, model, testPartDataView);
 
+            foreach (var dataInput in imagesForTest)
+            {
+                var b = dataInput.SourceImage.Pixels[0];
+            }
+            
             var predictionEngine = mlContext.Model.CreatePredictionEngine
                 <ProductionImageDataInput, ProductionImageDataOutput>
                 (model);

@@ -14,7 +14,7 @@ public class Class2
         var bitmap = new SKBitmap(220, 220);
         var skImage = SKImage.FromBitmap(bitmap);
         var skData = skImage.Encode();
-        using var stream = skData.AsStream();
+        var stream = skData.AsStream();
         var image = MLImage.CreateFromStream(stream);
         var pixels = image.Pixels.ToArray();
         var pixelFormat = image.PixelFormat;
