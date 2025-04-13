@@ -9,9 +9,7 @@ var modelPath =
 var mlContext = new MLContext();
 ITransformer trainedModel = mlContext.Model.Load(modelPath, out var inputSchema);
 Console.WriteLine("Модель загружена.");
-var predictionEngine = mlContext.Model.CreatePredictionEngine
-    <ProductionImageDataInput, ProductionImageDataOutput>
-    (trainedModel);
+
 Console.WriteLine("PredictionEngine создан.");
 
 var b = new DataViewSchema.Builder();
@@ -29,24 +27,35 @@ using (var stream = File.OpenRead(imagePath))
     image = MLImage.CreateFromStream(stream);
 }
 
-var imageData = new ProductionImageDataInput { SourceImage = image };
-var sb = new StringBuilder();
-var prediction = predictionEngine.Predict(imageData);
-sb.AppendLine(prediction.PredictedLabelValue);
-var labelKeyColumn = outputSchema["LabelKey"];
-VBuffer<ReadOnlyMemory<char>> keyValues = default;
-labelKeyColumn.GetKeyValues(ref keyValues);
-var items = keyValues.Items().ToArray();
-if (items.Length != prediction.Score.Length)
+Console.WriteLine(DateTime.Now);
+for (int i = 0; i < 1000; i++)
 {
-    throw new InvalidOperationException();
+    var imageData = new ProductionImageDataInput { SourceImage = image };
+    //var sb = new StringBuilder();
+    var predictionEngine = mlContext.Model.CreatePredictionEngine
+        <ProductionImageDataInput, ProductionImageDataOutput>
+        (trainedModel);
+    var prediction = predictionEngine.Predict(imageData);
+    /*sb.AppendLine(prediction.PredictedLabelValue);
+    var labelKeyColumn = outputSchema["LabelKey"];
+    VBuffer<ReadOnlyMemory<char>> keyValues = default;
+    labelKeyColumn.GetKeyValues(ref keyValues);
+    var items = keyValues.Items().ToArray();
+    if (items.Length != prediction.Score.Length)
+    {
+        throw new InvalidOperationException();
+    }
+    var classesScores = items.Zip(prediction.Score,
+            (keyValuePair, predictionScore) => new
+                { ClassName = new string(keyValuePair.Value.Span), PredictionScore = predictionScore })
+        .ToArray();*/
+    /*sb.AppendLine("Вероятности принадлежности к классам материалов:");
+    sb.AppendLine(string.Join(", ",
+        classesScores.OrderByDescending(cs => cs.PredictionScore).Take(5)
+            .Select(cs => $"{cs.ClassName}: {cs.PredictionScore}")));*/
+    //Console.WriteLine(sb.ToString());
 }
-var classesScores = items.Zip(prediction.Score,
-        (keyValuePair, predictionScore) => new
-            { ClassName = new string(keyValuePair.Value.Span), PredictionScore = predictionScore })
-    .ToArray();
-sb.AppendLine("Вероятности принадлежности к классам материалов:");
-sb.AppendLine(string.Join(", ",
-    classesScores.OrderByDescending(cs => cs.PredictionScore).Take(5)
-        .Select(cs => $"{cs.ClassName}: {cs.PredictionScore}")));
-Console.WriteLine(sb.ToString());
+
+Console.WriteLine("end.");
+Console.WriteLine(DateTime.Now);
+

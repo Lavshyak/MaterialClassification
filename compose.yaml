@@ -7,3 +7,33 @@
     volumes:
       - ./MaterialClassification/bin/Debug/net9.0/model_10_90_11.zip:/data/inception5h/model_10_90_11.zip
       - C:/Users/lavsh/Downloads/granite.jpg:/data/granite.jpg
+  
+  rabbitmq:
+    image: rabbitmq:4.0.8
+    hostname: rabbitmq
+    ports:
+      - "5672:5672" # основное соединение
+      - "15672:15672" # web-интерфейс
+    environment:
+      - RABBITMQ_DEFAULT_USER=rmquser
+      - RABBITMQ_DEFAULT_PASS=rmqpassword
+      
+  minio:
+    image: minio/minio:RELEASE.2025-04-08T15-41-24Z
+    hostname: minio
+    command: server --console-address ":9001" /data/
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: muser
+      MINIO_ROOT_PASSWORD: mpassword
+      
+  redis:
+    image: redis:7.4.2-bookworm
+    ports:
+      - "6379:6379"
+    environment:
+      - REDIS_PASSWORD=rpassword
+      - REDIS_PORT=6379
+      - REDIS_DATABASES=16

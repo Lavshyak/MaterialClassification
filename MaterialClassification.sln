@@ -15,6 +15,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialClassification.Trai
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialClassification.SingleImageTest", "MaterialClassification.SingleImageTest\MaterialClassification.SingleImageTest.csproj", "{6E51EFA3-FF86-4AD4-8236-04A1B352D42B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialClassification.ClassificationWorker", "MaterialClassification.ClassificationWorker\MaterialClassification.ClassificationWorker.csproj", "{9F978F14-C59C-490D-847B-DB88CDAB68A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialClassification.Main", "MaterialClassification.Main\MaterialClassification.Main.csproj", "{3483820C-AF71-463E-BC20-A8D97BDD0AD0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{D46432C1-58D0-4DBD-A4A6-C8C8B5CC9D3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SandboxLib", "SandboxLib\SandboxLib.csproj", "{E9FEDCAA-0137-44B3-8E7C-19CBA61EA70A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainigLib", "TrainigLib\TrainigLib.csproj", "{C96070B4-18F1-4F88-87B8-510497A0FC75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataViewImageProblem", "DataViewImageProblem\DataViewImageProblem.csproj", "{083A38AD-FCB7-4B73-9EC7-359F46AFE5B1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,5 +53,29 @@ Global
 		{6E51EFA3-FF86-4AD4-8236-04A1B352D42B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E51EFA3-FF86-4AD4-8236-04A1B352D42B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E51EFA3-FF86-4AD4-8236-04A1B352D42B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F978F14-C59C-490D-847B-DB88CDAB68A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F978F14-C59C-490D-847B-DB88CDAB68A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F978F14-C59C-490D-847B-DB88CDAB68A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F978F14-C59C-490D-847B-DB88CDAB68A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3483820C-AF71-463E-BC20-A8D97BDD0AD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3483820C-AF71-463E-BC20-A8D97BDD0AD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3483820C-AF71-463E-BC20-A8D97BDD0AD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3483820C-AF71-463E-BC20-A8D97BDD0AD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D46432C1-58D0-4DBD-A4A6-C8C8B5CC9D3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D46432C1-58D0-4DBD-A4A6-C8C8B5CC9D3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D46432C1-58D0-4DBD-A4A6-C8C8B5CC9D3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D46432C1-58D0-4DBD-A4A6-C8C8B5CC9D3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9FEDCAA-0137-44B3-8E7C-19CBA61EA70A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9FEDCAA-0137-44B3-8E7C-19CBA61EA70A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9FEDCAA-0137-44B3-8E7C-19CBA61EA70A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9FEDCAA-0137-44B3-8E7C-19CBA61EA70A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C96070B4-18F1-4F88-87B8-510497A0FC75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C96070B4-18F1-4F88-87B8-510497A0FC75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C96070B4-18F1-4F88-87B8-510497A0FC75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C96070B4-18F1-4F88-87B8-510497A0FC75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{083A38AD-FCB7-4B73-9EC7-359F46AFE5B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{083A38AD-FCB7-4B73-9EC7-359F46AFE5B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{083A38AD-FCB7-4B73-9EC7-359F46AFE5B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{083A38AD-FCB7-4B73-9EC7-359F46AFE5B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

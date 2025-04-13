@@ -15,6 +15,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\MaterialClassification.DataModels\MaterialClassification.DataModels.csproj" />
+      <ProjectReference Include="..\TrainigLib\TrainigLib.csproj" />
     </ItemGroup>
 
 </Project>

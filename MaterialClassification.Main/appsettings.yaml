@@ -1,0 +1,62 @@
+﻿Serilog:
+  "Using": [ "Serilog.Expressions" ]
+  MinimumLevel: Information
+  Enrich:
+    - FromLogContext
+  
+  WriteTo:
+    - Name: Logger #important
+      Args:
+        configureLogger:
+          MinimumLevel: Information
+          Filter:
+            - Name: ByIncludingOnly
+              Args:
+                expression: StartsWith(SourceContext, 'Microsoft.Hosting.Lifetime') or StartsWith(SourceContext, 'Static') or @l = 'Error' or @l = 'Critical' or @l = 'Warning'
+          WriteTo:
+            - Name: Console
+              Args:
+                outputTemplate: "[{Timestamp:HH:mm:ss}] [{Level:u3}] [{RequestId}] [{SourceContext}] {Message:lj}{NewLine}{Exception}"
+            - Name: File
+              Args:
+                path: logs/important.txt
+                outputTemplate: "[{Timestamp:HH:mm:ss}] [{Level:u3}] [{RequestId}] [{SourceContext}] {Message:lj}{NewLine}{Exception}"
+    - Name: Logger #full
+      Args:
+        configureLogger:
+          #Filter:
+          #- Name: ByExcluding
+          #  Args:
+          #    expression: StartsWith(SourceContext, 'Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware')
+          MinimumLevel: Debug
+          WriteTo:
+            - Name: File
+              Args:
+                path: logs/full.txt
+                rollingInterval: Day
+                outputTemplate: "[{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz}] [{Level:u3}] [{RequestId}] [{SourceContext}] {Message:lj}{NewLine}{Exception}"
+
+    - Name: Logger #problems
+      Args:
+        configureLogger:
+          MinimumLevel: Warning
+          WriteTo:
+            - Name: File
+              Args:
+                path: logs/problems.txt
+                outputTemplate: "[{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz}] [{Level:u3}] [{RequestId}] [{SourceContext}] {Message:lj}{NewLine}{Exception}"
+
+#    - Name: Logger #HttpLoggingMiddleware
+#      Args:
+#        configureLogger:
+#          Filter:
+#            - Name: ByIncludingOnly
+#              Args:
+#                expression: StartsWith(SourceContext, 'Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware')
+#          MinimumLevel: Debug
+#          WriteTo:
+#            - Name: File
+#              Args:
+#                path: logs/Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware.txt
+#                rollingInterval: Day
+#                outputTemplate: "[{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz}] [{Level:u3}] [{RequestId}] [{SourceContext}] {Message:lj}{NewLine}{Exception}"
