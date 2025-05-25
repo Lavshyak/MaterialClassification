@@ -1,0 +1,25 @@
+﻿SciSharp.TensorFlow.Redist-Linux-GPU 2.11.1
+SciSharp.TensorFlow.Redist-Linux-GPU contains the Google TensorFlow C library GPU version 2.11.1 redistributed as a NuGet package.
+
+https://www.tensorflow.org/install/source#gpu
+Version	            Python version	Compiler	Build tools	    cuDNN	CUDA
+tensorflow-2.11.0	3.7-3.10	    GCC 9.3.1	Bazel 5.3.0	    8.1	    11.2
+
+
+
+Microsoft.ML.TensorFlow 4.0.2
+TensorFlow.NET ≥ 0.20.1
+
+#https://github.com/SciSharp/TensorFlow.NET?tab=readme-ov-file#version-relationships
+#tf.net 0.10x -> tf native 2.10
+#tf.net 0.20x -> tf native 2.20
+
+SciSharp.TensorFlow.Redist-Windows-GPU 2.3.1
+SciSharp.TensorFlow.Redist-Windows-GPU contains the TensorFlow C library GPU version 2.3.1 redistributed as a NuGet package.
+
+Version	            Python version	Compiler	Build tools	    cuDNN	CUDA
+tensorflow-2.3.0	3.5-3.8	        GCC 7.3.1	Bazel 3.1.0	    7.6	    10.1
+
+
+env отключение лога tensorflow 2.3.1:
+TF_CPP_MIN_LOG_LEVEL:3

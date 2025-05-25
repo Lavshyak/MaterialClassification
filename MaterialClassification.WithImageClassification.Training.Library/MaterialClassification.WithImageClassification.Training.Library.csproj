@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <AssemblyName>MaterialClassification.WithImageClassification.Training.Library</AssemblyName>
+        <RootNamespace>MaterialClassification.WithImageClassification.Training.Library</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.ML.ImageAnalytics" Version="4.0.2" />
+      <PackageReference Include="Microsoft.ML.Vision" Version="4.0.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\MaterialClassification.WithImageClassification.ColumnNames\MaterialClassification.WithImageClassification.ColumnNames.csproj" />
+    </ItemGroup>
+
+</Project>

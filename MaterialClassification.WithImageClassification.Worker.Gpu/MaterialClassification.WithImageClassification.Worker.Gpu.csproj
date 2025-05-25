@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\MaterialClassification.WithImageClassification.ColumnNames\MaterialClassification.WithImageClassification.ColumnNames.csproj" />
+      <ProjectReference Include="..\MaterialClassification.WithImageClassification.ProductionDataModels\MaterialClassification.WithImageClassification.ProductionDataModels.csproj" />
+      <ProjectReference Include="..\MaterialClassification.WithImageClassification.Worker.Library\MaterialClassification.WithImageClassification.Worker.Library.csproj" />
+      <ProjectReference Include="..\MaterialClassification.Worker.Library\MaterialClassification.Worker.Library.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="9.0.5" />
+      <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.5" />
+      <PackageReference Include="Microsoft.ML.Vision" Version="4.0.2" />
+      <PackageReference Include="Minio" Version="6.0.4" />
+      <PackageReference Include="NetEscapades.Configuration.Yaml" Version="3.1.0" />
+      <PackageReference Include="RabbitMQ.Client" Version="7.1.2" />
+      <PackageReference Include="SciSharp.TensorFlow.Redist-Windows-GPU" Version="2.3.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="appsettings.yaml">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,5 @@
+{
+  "ImagesRootPath": "C:\\CodeProjects\\NET\\MaterialClassification\\data\\materials_under_microscope",
+  "RandomSeed": 11,
+  "SaveModelToDirectory": "C:\\CodeProjects\\NET\\MaterialClassification\\data\\MyModels"
+}

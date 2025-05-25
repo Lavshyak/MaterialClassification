@@ -1,0 +1,8 @@
+{
+  "ImagesRootPath": "C:\\CodeProjects\\NET\\MaterialClassification\\data\\materials_under_microscope",
+  "ImagesForTestPerClass": 10,
+  "ImagesForTrainPerClass": 90,
+  "RandomSeed": 11,
+  "GpuDeviceId": 0,
+  "SaveModelToDirectory": "C:\\CodeProjects\\NET\\MaterialClassification\\data\\modelsWithImageClassification"
+}

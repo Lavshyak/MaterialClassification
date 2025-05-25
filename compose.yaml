@@ -1,13 +1,111 @@
-﻿services:
-  materialclassificationapp:
-    image: materialclassificationapp
+﻿services:  
+  
+  mytensorflow:
+    image: mytensorflow:2.0.8
     build:
       context: .
-      dockerfile: MaterialClassificationApp/Dockerfile
-    volumes:
-      - ./MaterialClassification/bin/Debug/net9.0/model_10_90_11.zip:/data/inception5h/model_10_90_11.zip
-      - C:/Users/lavsh/Downloads/granite.jpg:/data/granite.jpg
+      dockerfile: Tensorflow/Dockerfile
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [ gpu ]
   
+  artificial_classes:
+    image: artificial_classes:2.0.12
+    build:
+      context: .
+      dockerfile: MaterialClassification.ArtificalClasses/Dockerfile
+    volumes:
+      - ./MaterialClassification.ArtificalClasses/docker_config.json:/app/config.json
+      - ./MaterialClassification.Training/data/inception5h/tensorflow_inception_graph.pb:/app/tensorflow_inception_graph.pb
+    dns: [ "8.8.8.8" ]
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [ gpu ]
+    labels:
+      com.jetbrains.rider.fast.mode: "false"
+  
+  mainwebapi:
+    image: mainwebapi:0.0.3
+    build:
+      context: .
+      dockerfile: MaterialClassification.MainWebApi/Dockerfile
+    depends_on:
+      - rabbitmq
+      - minio
+      - redis
+      #- image_classification_worker_cpu
+    ports:
+      - "5269:8080"
+    environment:
+      Redis__Endpoints: "redis:6379"
+      Redis__Password: "rpassword"
+      Redis__SSL: "False"
+      Redis__TaskResultPrefix: "classification_task_result_"
+      RabbitMQ__HostName: "rabbitmq"
+      RabbitMQ__Port: "5672"
+      RabbitMQ__UserName: "rmquser"
+      RabbitMQ__Password: "rmqpassword"
+      RabbitMQ__SSL_Enabled: "False"
+      RabbitMQ__QueueNames__CompletedClassificationTasks: "completed_classification_tasks_queue"
+      RabbitMQ__QueueNames__ClassificationTasks: "classification_tasks_queue"
+      Minio__Endpoint: "minio:9000"
+      Minio__AccessKey: "muser"
+      Minio__SecretKey: "mpassword"
+      Minio__SSL: "False"
+      Minio__BucketNames__Images: "images-for-classification-tasks"
+      Cors__DefaultPolicy__OriginsJsonArray: '["http://localhost:5173"]'
+  
+  image_classification_worker_cpu_1:
+    image: image_classification_worker_cpu:0.0.1
+    build:
+      context: .
+      dockerfile: MaterialClassification.WithImageClassification.Worker.Cpu/Dockerfile
+    environment:
+      MLNet__ModelPath: "/models/current.zip"
+    volumes:
+      - ./data/modelsWithImageClassification/model_withImageClassification_10_90_11.zip:/models/current.zip
+    depends_on:
+      - rabbitmq
+      - minio
+      - redis
+  
+  image_classification_worker_cpu_2:
+    image: image_classification_worker_cpu:0.0.1
+    build:
+      context: .
+      dockerfile: MaterialClassification.WithImageClassification.Worker.Cpu/Dockerfile
+    environment:
+      MLNet__ModelPath: "/models/current.zip"
+    volumes:
+      - ./data/modelsWithImageClassification/model_withImageClassification_10_90_11.zip:/models/current.zip
+    depends_on:
+      - rabbitmq
+      - minio
+      - redis
+  
+  fakeworker:
+    image: fakeworker:0.0.1
+    build:
+      context: .
+      dockerfile: MaterialClassification.FakeWorker/Dockerfile
+    environment:
+      Redis__Endpoints: "redis:6379"
+      Redis__Password: "rpassword"
+      Redis__SSL: "False"
+      RabbitMQ__HostName: "rabbitmq"
+      RabbitMQ__Port: "5672"
+      RabbitMQ__UserName: "rmquser"
+      RabbitMQ__Password: "rmqpassword"
+      RabbitMQ__SSL_Enabled: "False"
+      
   rabbitmq:
     image: rabbitmq:4.0.8
     hostname: rabbitmq
@@ -17,7 +115,7 @@
     environment:
       - RABBITMQ_DEFAULT_USER=rmquser
       - RABBITMQ_DEFAULT_PASS=rmqpassword
-      
+  
   minio:
     image: minio/minio:RELEASE.2025-04-08T15-41-24Z
     hostname: minio
@@ -28,9 +126,10 @@
     environment:
       MINIO_ROOT_USER: muser
       MINIO_ROOT_PASSWORD: mpassword
-      
+  
   redis:
     image: redis:7.4.2-bookworm
+    hostname: redis
     ports:
       - "6379:6379"
     environment:

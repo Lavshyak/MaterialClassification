@@ -1,0 +1,11 @@
+{
+  "ImageHeight": 220,
+  "ImageWidth": 220,
+  "OffsetColor": 117,
+  "ChannelsLast": true,
+  "InceptionTensorFlowModelFilePath": "/app/tensorflow_inception_graph.pb",
+  "ImagesRootPath": "",
+  "ImagesForTestPerClass": 1,
+  "ImagesForTrainPerClass": 1,
+  "RandomSeed": 11
+}
