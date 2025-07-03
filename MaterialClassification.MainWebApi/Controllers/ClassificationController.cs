@@ -27,14 +27,15 @@ public class ClassificationController : ControllerBase
         
         var taskId = Guid.NewGuid();
         var resultTask = _classificationTaskResultGetter.WaitResult(taskId, CancellationToken.None);
-        await _classificationTaskSender.SendOnly(stream, formFile.Length, taskId);
+        await _classificationTaskSender.Send(stream, formFile.Length, taskId);
         var result = await resultTask;
         return result;
     }
 
     [HttpPost]
-    public async Task<List<ClassificationTaskResult>> ClassifySyncMultiply(IFormFile[] formFiles)
+    public async Task<List<ClassificationTaskResult>> ClassifySyncMultiply(IFormFileCollection formFiles)
     {
+        formFiles = this.HttpContext.Request.Form.Files;
         var results = new List<ClassificationTaskResult>();
 
         foreach (var formFile in formFiles)
@@ -42,7 +43,7 @@ public class ClassificationController : ControllerBase
             var taskId = Guid.NewGuid();
             var resultTask = _classificationTaskResultGetter.WaitResult(taskId, CancellationToken.None);
             await using var stream = formFile.OpenReadStream();
-            await _classificationTaskSender.SendOnly(stream, formFile.Length, taskId);
+            await _classificationTaskSender.Send(stream, formFile.Length, taskId);
             var result = await resultTask;
             results.Add(result);
         }
@@ -55,21 +56,22 @@ public class ClassificationController : ControllerBase
     {
         await using var stream = formFile.OpenReadStream();
         var taskId = Guid.NewGuid();
-        await _classificationTaskSender.SendOnly(stream, formFile.Length, taskId);
+        await _classificationTaskSender.Send(stream, formFile.Length, taskId);
 
         return taskId;
     }
 
     [HttpPost]
-    public async Task<List<Guid>> SendToClassifyMultiply(IFormFile[] formFiles)
+    public async Task<List<Guid>> SendToClassifyMultiply(IFormFileCollection formFiles)
     {
+        formFiles = this.HttpContext.Request.Form.Files;
         var taskIds = new List<Guid>();
 
         foreach (var formFile in formFiles)
         {
             await using var stream = formFile.OpenReadStream();
             var taskId = Guid.NewGuid();
-            await _classificationTaskSender.SendOnly(stream, formFile.Length, taskId);
+            await _classificationTaskSender.Send(stream, formFile.Length, taskId);
             taskIds.Add(taskId);
         }
 

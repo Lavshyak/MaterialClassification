@@ -6,23 +6,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		moments.txt = moments.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialClassification.WithLbfgs.WebApi", "MaterialClassification.WithLbfgs.WebApi\MaterialClassification.WithLbfgs.WebApi.csproj", "{80C43562-A34D-4EFB-893C-9862ED967A26}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialClassification.WithLbfgs.WebApi", "Trash/MaterialClassification.WithLbfgs.WebApi\MaterialClassification.WithLbfgs.WebApi.csproj", "{80C43562-A34D-4EFB-893C-9862ED967A26}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialClassification.WithLbfgs.ConsoleClient", "MaterialClassification.WithLbfgs.ConsoleClient\MaterialClassification.WithLbfgs.ConsoleClient.csproj", "{BE7BF63B-B8EA-4A47-895A-2527BB45BDC1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialClassification.WithLbfgs.ConsoleClient", "Trash/MaterialClassification.WithLbfgs.ConsoleClient\MaterialClassification.WithLbfgs.ConsoleClient.csproj", "{BE7BF63B-B8EA-4A47-895A-2527BB45BDC1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialClassification.WithLbfgs.DataModels", "MaterialClassification.WithLbfgs.DataModels\MaterialClassification.WithLbfgs.DataModels.csproj", "{DD954420-41A8-4EDE-A534-48B2A66CC8D5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialClassification.WithLbfgs.DataModels", "Trash/MaterialClassification.WithLbfgs.DataModels\MaterialClassification.WithLbfgs.DataModels.csproj", "{DD954420-41A8-4EDE-A534-48B2A66CC8D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialClassification.WithLbfgs.Training", "MaterialClassification.WithLbfgs.Training\MaterialClassification.WithLbfgs.Training.csproj", "{1ADADC23-96AC-472E-AB66-8A269070E06E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialClassification.WithLbfgs.Training", "Trash/MaterialClassification.WithLbfgs.Training\MaterialClassification.WithLbfgs.Training.csproj", "{1ADADC23-96AC-472E-AB66-8A269070E06E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialClassification.WithLbfgs.SingleImageTest", "MaterialClassification.WithLbfgs.SingleImageTest\MaterialClassification.WithLbfgs.SingleImageTest.csproj", "{6E51EFA3-FF86-4AD4-8236-04A1B352D42B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialClassification.WithLbfgs.SingleImageTest", "Trash/MaterialClassification.WithLbfgs.SingleImageTest\MaterialClassification.WithLbfgs.SingleImageTest.csproj", "{6E51EFA3-FF86-4AD4-8236-04A1B352D42B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialClassification.WithLbfgs.ClassificationWorker", "MaterialClassification.WithLbfgs.ClassificationWorker\MaterialClassification.WithLbfgs.ClassificationWorker.csproj", "{9F978F14-C59C-490D-847B-DB88CDAB68A0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialClassification.WithLbfgs.ClassificationWorker", "Trash/MaterialClassification.WithLbfgs.ClassificationWorker\MaterialClassification.WithLbfgs.ClassificationWorker.csproj", "{9F978F14-C59C-490D-847B-DB88CDAB68A0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialClassification.MainWebApi", "MaterialClassification.MainWebApi\MaterialClassification.MainWebApi.csproj", "{3483820C-AF71-463E-BC20-A8D97BDD0AD0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialClassification.Shared", "MaterialClassification.Shared\MaterialClassification.Shared.csproj", "{D46432C1-58D0-4DBD-A4A6-C8C8B5CC9D3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialClassification.WithLbfgs.ArtificalClasses", "MaterialClassification.WithLbfgs.ArtificalClasses\MaterialClassification.WithLbfgs.ArtificalClasses.csproj", "{7C5C0875-E3EA-44F5-90AF-416004D6CBDE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialClassification.WithLbfgs.ArtificalClasses", "Trash/MaterialClassification.WithLbfgs.ArtificalClasses\MaterialClassification.WithLbfgs.ArtificalClasses.csproj", "{7C5C0875-E3EA-44F5-90AF-416004D6CBDE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialClassification.WithImageClassification.Training.Library", "MaterialClassification.WithImageClassification.Training.Library\MaterialClassification.WithImageClassification.Training.Library.csproj", "{76542621-D688-46A4-85EC-DCFF21A3AC36}"
 EndProject
@@ -36,7 +36,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialClassification.With
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialClassification.WithImageClassification.ColumnNames", "MaterialClassification.WithImageClassification.ColumnNames\MaterialClassification.WithImageClassification.ColumnNames.csproj", "{765D9EDE-A7DD-422D-895E-75FDC27B71B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialClassification.WithImageClassification.ArtificalClasses", "MaterialClassification.WithImageClassification.ArtificalClasses\MaterialClassification.WithImageClassification.ArtificalClasses.csproj", "{08E0584F-6309-45F3-A654-1BF30E6420F9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialClassification.WithImageClassification.ArtificalClasses", "Trash/MaterialClassification.WithImageClassification.ArtificalClasses\MaterialClassification.WithImageClassification.ArtificalClasses.csproj", "{08E0584F-6309-45F3-A654-1BF30E6420F9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialClassification.FakeWorker", "MaterialClassification.FakeWorker\MaterialClassification.FakeWorker.csproj", "{263BBB53-944E-40AE-BAC6-428059DB296A}"
 EndProject
@@ -47,6 +47,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialClassification.WithImageClassification.Worker.Cpu", "MaterialClassification.WithImageClassification.Worker.Cpu\MaterialClassification.WithImageClassification.Worker.Cpu.csproj", "{2F0AEF81-5FE8-49F6-876E-5AE77FD94FC5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialClassification.WithImageClassification.Worker.Library", "MaterialClassification.WithImageClassification.Worker.Library\MaterialClassification.WithImageClassification.Worker.Library.csproj", "{A8C180C0-B7E1-481E-B426-B7FD85282A85}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Trash", "Trash\", "{D1704D66-7D53-4872-B162-EE19D1CAC2C8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -138,5 +140,15 @@ Global
 		{A8C180C0-B7E1-481E-B426-B7FD85282A85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8C180C0-B7E1-481E-B426-B7FD85282A85}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8C180C0-B7E1-481E-B426-B7FD85282A85}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{08E0584F-6309-45F3-A654-1BF30E6420F9} = {D1704D66-7D53-4872-B162-EE19D1CAC2C8}
+		{7C5C0875-E3EA-44F5-90AF-416004D6CBDE} = {D1704D66-7D53-4872-B162-EE19D1CAC2C8}
+		{9F978F14-C59C-490D-847B-DB88CDAB68A0} = {D1704D66-7D53-4872-B162-EE19D1CAC2C8}
+		{BE7BF63B-B8EA-4A47-895A-2527BB45BDC1} = {D1704D66-7D53-4872-B162-EE19D1CAC2C8}
+		{DD954420-41A8-4EDE-A534-48B2A66CC8D5} = {D1704D66-7D53-4872-B162-EE19D1CAC2C8}
+		{6E51EFA3-FF86-4AD4-8236-04A1B352D42B} = {D1704D66-7D53-4872-B162-EE19D1CAC2C8}
+		{1ADADC23-96AC-472E-AB66-8A269070E06E} = {D1704D66-7D53-4872-B162-EE19D1CAC2C8}
+		{80C43562-A34D-4EFB-893C-9862ED967A26} = {D1704D66-7D53-4872-B162-EE19D1CAC2C8}
 	EndGlobalSection
 EndGlobal

@@ -51,7 +51,9 @@ public static class WorkerProgram
             Password = GetRequiredConfigurationValue<string>("RabbitMQ:Password"),
             Ssl = { Enabled = GetRequiredConfigurationValue<bool>("RabbitMQ:SSL_Enabled") }
         };
+        Console.WriteLine("Wait for RabbitMQ connection established...");
         builder.Services.AddKeyedSingleton("RabbitMqConnection", await rabbitMqConnectionFactory.CreateConnectionAsync());
+        Console.WriteLine("RabbitMQ connection established.");
 
         builder.Services.AddMinio(client =>
             client.WithEndpoint(GetRequiredConfigurationValue<string>("Minio:Endpoint"))

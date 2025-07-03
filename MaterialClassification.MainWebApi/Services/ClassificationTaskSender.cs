@@ -18,8 +18,9 @@ public class ClassificationTaskSender
     /// </summary>
     /// <param name="imageStream"></param>
     /// <param name="imageSize"></param>
+    /// <param name="taskId"></param>
     /// <returns>task id</returns>
-    public async Task SendOnly(Stream imageStream, long imageSize, Guid taskId)
+    public async Task Send(Stream imageStream, long imageSize, Guid taskId)
     {
         await _minioImagesRepository.SendImage(taskId, imageStream, imageSize);
         await _rabbitMqClassificationTaskSenderService.Send(taskId);

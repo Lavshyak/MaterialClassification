@@ -1,8 +1,6 @@
 ﻿using System.Text.Json;
-using MaterialClassification.WithImageClassification.MetaInfo;
 using MaterialClassification.WithImageClassification.Training.Library;
 using Microsoft.ML;
-using Microsoft.ML.Data;
 
 namespace MaterialClassification.WithImageClassification.Training.Single;
 

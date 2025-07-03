@@ -18,6 +18,7 @@ public class ListenerHosted : IHostedService, IDisposable, IAsyncDisposable
         _connection = connection;
         _resultSender = resultSender;
         _classificationTaskHandler = classificationTaskHandler;
+        Console.WriteLine("ListenerHosted created");
     }
     
     public async Task StartAsync(CancellationToken cancellationToken)

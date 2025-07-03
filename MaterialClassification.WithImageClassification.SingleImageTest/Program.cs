@@ -10,8 +10,6 @@ var mlContext = new MLContext();
 ITransformer trainedModel = mlContext.Model.Load(modelPath, out var inputSchema);
 Console.WriteLine("Модель загружена.");
 
-Console.WriteLine("PredictionEngine создан.");
-
 var imagePath =
     "C:\\CodeProjects\\NET\\MaterialClassification\\data\\materials_under_microscope\\Copper-1B\\Copper-1B_6.jpg";
 
@@ -27,6 +25,8 @@ var sb = new StringBuilder();
 var predictionEngine = mlContext.Model.CreatePredictionEngine
     <ProductionImageDataInput, ProductionImageDataOutput>
     (trainedModel, schema);
+
+Console.WriteLine("PredictionEngine создан.");
 
 var prediction = predictionEngine.Predict(imageData);
 

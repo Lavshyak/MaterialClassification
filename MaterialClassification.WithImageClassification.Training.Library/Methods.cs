@@ -14,23 +14,6 @@ public class PreparationImageDataInput
     public string LabelValue { get; set; } = null!;
 }
 
-public class TrainingImageDataInput : PreparationImageDataInput
-{
-    [ColumnName(ColumnNames.SourceImageBytes)]
-    public byte[] SourceImageBytes { get; set; } = null!;
-}
-
-public class TrainingImageDataOutput : TrainingImageDataInput
-{
-    // Вероятности принадлежности к классам
-    [ColumnName(ColumnNames.Score)]
-    public float[] Score { get; set; } = null!;
-
-    // Результат предсказания
-    [ColumnName(ColumnNames.PredictedLabelValue)]
-    public string PredictedLabelValue { get; set; } = null!;
-}
-
 public class Methods
 {
     public static void CalculateAndPrintMetrics(MLContext mlContext, IDataView transformedTestPartDataView,
@@ -41,7 +24,7 @@ public class Methods
                 labelColumnName: ColumnNames.LabelKey,
                 predictedLabelColumnName: ColumnNames.PredictedLabelKey,
                 scoreColumnName: ColumnNames.Score);
-
+        
         List<(string, string)> toLog =
         [
             ("Кол-во классов", metrics.ConfusionMatrix.NumberOfClasses.ToString()),
@@ -57,7 +40,6 @@ public class Methods
 
             ("LogLoss", metrics.LogLoss.ToString("F6")),
             ("MicroAccuracy", metrics.MicroAccuracy.ToString("F6")),
-            ("MacroAccuracy", metrics.MacroAccuracy.ToString("F6")),
             ("MacroAccuracy", metrics.MacroAccuracy.ToString("F6"))
         ];
 
@@ -103,18 +85,7 @@ public class Methods
 
         return pipeline;
     }
-
-    public static IEstimator<ITransformer> GenerateFromImageAndLabelValuePreparationEstimator(MLContext mlContext)
-    {
-        IEstimator<ITransformer> pipeline =
-            mlContext.Transforms.Conversion.MapValueToKey(
-                inputColumnName: ColumnNames.LabelValue,
-                outputColumnName: ColumnNames.LabelKey, keyOrdinality: Microsoft.ML.Transforms
-                    .ValueToKeyMappingEstimator.KeyOrdinality.ByValue);
-
-        return pipeline;
-    }
-
+    
     public record ImagesDataGroup(string ClassLabel, PreparationImageDataInput[] ImagesData);
 
     public static ImagesDataGroup[] CollectImagesDataFromDirectory(string directoryPath,

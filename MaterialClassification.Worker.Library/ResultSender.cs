@@ -33,10 +33,11 @@ public class ResultSender : IAsyncDisposable
     
     public async Task SendResult(Guid taskId, ClassificationTaskResult taskResult)
     {
-        var taskIdStr = JsonSerializer.Serialize(taskId);
+        var taskIdJsonStr = JsonSerializer.Serialize(taskId);
+        var taskIdStr = taskId.ToString();
 
         Console.WriteLine($"Sending to rabbitmq {taskId}");
-        await SendRabbitMq(taskIdStr, taskResult);
+        await SendRabbitMq(taskIdJsonStr, taskResult);
         Console.WriteLine($"Sending to redis {taskId}");
         await SendRedis(taskIdStr, taskResult);
     }
